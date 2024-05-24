@@ -55,7 +55,7 @@ ROOT_URLCONF = 'centro_comercial_ERP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r"C:\Users\DV210\OneDrive\Escritorio\Proyecto-HDP115-2024\centro_comercial_ERP\centro_comercial_ERP\plantillas"],
+        'DIRS': [r"C:\Users\DV210\OneDrive\Escritorio\Proyecto-HDP115-2024\modulo-ventas\centro_comercial_ERP\modulo_ventas\templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
