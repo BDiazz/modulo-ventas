@@ -1,0 +1,73 @@
+/* Estilos básicos para el cuerpo de la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+}
+
+/* Estilos para los enlaces de la barra de navegación */
+.navbar-left a,
+.navbar-right .user-name {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.navbar-left a:hover,
+.navbar-right .user-name:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor del menú de usuario */
+.user-menu {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Icono de usuario */
+.user-icon {
+    margin-right: 5px;
+}
+
+/* Contenido del menú desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+}
+
+/* Estilos para los enlaces del menú desplegable */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mostrar el menú desplegable al pasar el ratón sobre el menú de usuario */
+.user-menu:hover .dropdown-content {
+    display: block;
+}
+
+.user-icon i{
+    color: #ffffff;
+}

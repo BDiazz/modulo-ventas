@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 #Aqui se importan las vistas
-#from modulo_ventas.views import (descomentar)
+from modulo_ventas.views import registrarVenta
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('registrarVenta/', registrarVenta),
 ]

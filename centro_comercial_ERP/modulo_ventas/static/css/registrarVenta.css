@@ -1,0 +1,108 @@
+/* Estilos para el contenedor principal */
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+/* Estilos para el encabezado */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para el formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Estilos para la tabla de datos */
+.data-grid table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.data-grid th,
+.data-grid td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.data-grid th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Estilos para el botón de agregar servicio */
+.add-service-button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.add-service-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para las secciones de totales */
+.totals p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+/* Estilos para los botones de acción del formulario */
+.form-actions {
+  margin-top: 20px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.delete-button {
+  text-align: center;
+}
+
+.data-grid .delete-button {
+  display: block;
+  margin: auto;
+}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Enlace al archivo CSS en el directorio estático -->
+    <link rel="stylesheet" href="{% static 'css/barra.css' %}">
+    <!-- Enlace para usar icono de fontAwesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <!-- Sección izquierda de la barra de navegación -->
+        <div class="navbar-left">
+            <!-- Enlaces de navegación -->
+            <a href="#">Ventas</a>
+            <a href="#">Clientes</a>
+            <a href="#">Servicios</a>
+            <a href="#">Reportes</a>
+        </div>
+        <!-- Sección derecha de la barra de navegación -->
+        <div class="navbar-right">
+            <!-- Menú de usuario -->
+            <div class="user-menu">
+                <!-- Icono de usuario -->
+                <span class="user-icon"><i class="fas fa-user"></i></span>
+                <!-- Nombre del usuario -->
+                <span class="user-name">User</span>
+                <!-- Contenido desplegable del menú de usuario -->
+                <div class="dropdown-content">
+                    <!-- Enlace para cerrar sesión -->
+                    <a href="#">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
+
