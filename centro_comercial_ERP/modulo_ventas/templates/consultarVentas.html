@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Ventas</title>
+    {% load static %}
+    {% include "barra.html"%}
+    <link type="text/css" rel="stylesheet" href='{% static "css/consultarVentas.css" %}'/>
+</head>
+<body>
+    <div class="container">
+        <header>
+        
+        </header>
+
+        <main>
+            <div class="controls">
+                <button class="new">Nuevo</button>
+                <label for="search-by">Buscar por:</label>
+                <select id="search-by">
+                    <option>Dia</option>
+                    <option>Mes</option>
+                    <option>Semana</option>
+                    <option>Año</option>
+                    <option>Todas</option>
+                </select>
+                <input type="text" placeholder="Buscar...">
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Fecha de creación</th>
+                        <th>Vendedor</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>24/04/2024</td>
+                        <td>Kevin Gonzalez</td>
+                        <td>600.00$</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>24/04/2024</td>
+                        <td>Audrey Fabiana Sanchez Lujan</td>
+                        <td>200.00$</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td>800.00$</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+    </div>
+</body>
+</html>
