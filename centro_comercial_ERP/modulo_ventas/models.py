@@ -11,13 +11,13 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=20)
     correo = models.EmailField()
     direccion = models.CharField(max_length=200)
-    id= models.CharField(max_length=50, primary_key=True)
+    id= models.AutoField(primary_key=True)
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField()
     categoria = models.CharField(max_length=50)
-    id= models.CharField(max_length=50, primary_key=True)
+    id= models.AutoField(primary_key=True)
 
 class Periodo(models.Model):
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
@@ -26,7 +26,7 @@ class Periodo(models.Model):
 
 class Venta(models.Model):
     fecha = models.DateField()
-    id= models.CharField(max_length=50, primary_key=True)
+    id= models.AutoField(primary_key=True)
     metodoPago = models.CharField(max_length=50)
     total = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

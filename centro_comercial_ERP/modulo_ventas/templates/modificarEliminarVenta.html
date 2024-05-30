@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta tags importantes para la configuración básica de la pantalla -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar venta</title>
+    <!-- Enlace al archivo CSS en el directorio estático -->
+    <link rel="stylesheet" href="{% static 'css/modificarEliminarVenta.css' %}">
+</head>
+<body>
+    {% include "barra.html" %}
+    <!-- Contenedor principal para la página -->
+    <div class="container">
+        <!-- Grupo de encabezado con título y botones -->
+        <div class="header">
+            <h1>VENTA #{{ id }} <button class="invoice-button">FACTURA</button></h1>
+            <!-- Botón para eliminar venta -->
+            <form style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="delete-sale-button">Eliminar Venta</button>
+            </form>
+        </div>
+        <!-- Formulario principal -->
+        <form>
+            <!-- Grupo de formulario para seleccionar el cliente -->
+            <div class="form-group">
+                <label for="cliente"><strong>Cliente:</strong></label>
+                <label id="cliente" name="cliente">José Jimenez</label>
+            </div>
+            <!-- Grupo de formulario para la fecha -->
+            <div class="form-group">
+                <label for="fecha"><strong>Fecha:</strong></label>
+                <label id="fecha" name="fecha">12/3/2024</label>
+            </div>
+            <!-- Grupo de formulario para la ID -->
+            <div class="form-group">
+                <label for="id"><strong>ID:</strong></label>
+                <label id="id" name="id">{{ id }}</label>
+            </div>
+            <!-- Grupo de formulario para seleccionar el método de pago -->
+            <div class="form-group">
+                <label for="metodo-pago"><strong>Método de pago:</strong></label>
+                <select id="metodo-pago" name="metodo-pago">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta-credito">Tarjeta de Crédito</option>
+                    <option value="tarjeta-debito">Tarjeta de Débito</option>
+                </select>
+            </div>
+            <!-- Tabla para mostrar los servicios agregados -->
+            <div class="data-grid">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Precio</th>
+                            <th>Periodo</th>
+                            <th>Impuesto %</th>
+                            <th>Impuesto Calc</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fila de ejemplo, esta se puede eliminar cuando se implementa la lógica -->
+                        <tr>
+                            <td>Seguridad</td>
+                            <td>$200</td>
+                            <td>1 mes</td>
+                            <td>13%</td>
+                            <td>$26</td>
+                            <td><button type="button" class="delete-button">🗑️</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Botón para agregar un nuevo servicio -->
+                <button type="button" class="add-service-button">Agregar Servicio</button>
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Guardar</button>
+                    <button type="button" class="cancel-button">Cancelar</button>
+                  </div>
+            </div>
+ 
