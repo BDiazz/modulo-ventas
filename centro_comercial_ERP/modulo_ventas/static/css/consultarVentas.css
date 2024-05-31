@@ -1,3 +1,4 @@
+/* ventas.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,51 +6,88 @@ body {
 }
 
 .container {
-    width: 90%;
-    margin: auto;
-    padding-top: 20px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 header {
     background-color: #f4f4f4;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-}
-
-
-.user {
-    margin-right: 20px;
-}
-
-.controls {
+    padding: 10px 20px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info span {
+    margin-left: 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.controls button.new {
-    margin-right: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form label {
+    margin-right: 10px;
+}
+
+.search-form select,
+.search-form input[type="text"] {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 5px 10px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.controls label {
-    margin-right: 10px;
-}
-
-.controls select,
-.controls input[type="text"] {
-    padding: 5px;
-    margin-right: 20px;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 table, th, td {
@@ -61,11 +99,10 @@ th, td {
     text-align: left;
 }
 
-thead {
+th {
     background-color: #f4f4f4;
 }
 
-tfoot {
-    background-color: #f4f4f4;
+tfoot td {
     font-weight: bold;
 }

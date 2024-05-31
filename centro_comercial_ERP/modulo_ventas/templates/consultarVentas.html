@@ -1,60 +1,58 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Consultar Ventas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Ventas</title>
     {% load static %}
-    {% include "barra.html"%}
-    <link type="text/css" rel="stylesheet" href='{% static "css/consultarVentas.css" %}'/>
+    {% include "barra.html" %}
+    <link rel="stylesheet" href="{% static 'css/consultarVentas.css' %}">
 </head>
 <body>
     <div class="container">
         <header>
-        
         </header>
-
         <main>
-            <div class="controls">
-                <button class="new">Nuevo</button>
-                <label for="search-by">Buscar por:</label>
-                <select id="search-by">
-                    <option>Dia</option>
-                    <option>Mes</option>
-                    <option>Semana</option>
-                    <option>Año</option>
-                    <option>Todas</option>
-                </select>
-                <input type="text" placeholder="Buscar...">
+            <h1>Listado de Ventas</h1>
+            <div class="actions">
+                <a class="btn" href="{% url 'registrarVenta' %}">Nuevo</a>
+                <form class="search-form" method="get" action="{% url 'consultar_ventas' %}">
+                    <label for="filtro">Buscar por:</label>
+                    <select name="filtro" id="filtro">
+                        <option value="dia">Día</option>
+                        <option value="semana">Semana</option>
+                        <option value="mes">Mes</option>
+                        <option value="anio">Año</option>
+                        <option value="todas">Todas</option>
+                    </select>
+                    <button type="submit">Buscar</button>
+                </form>
             </div>
-
             <table>
                 <thead>
                     <tr>
-                        <th>Numero</th>
-                        <th>Fecha de creación</th>
+                        <th>ID</th>
+                        <th>Fecha</th>
                         <th>Vendedor</th>
+                        <th>Cliente</th>
                         <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for venta in ventas %}
                     <tr>
-                        <td>01</td>
-                        <td>24/04/2024</td>
-                        <td>Kevin Gonzalez</td>
-                        <td>600.00$</td>
+                        <td><a href="{% url 'modificar_venta' venta.id %}">{{ venta.id }}</a></td>
+                        <td>{{ venta.fecha }}</td>
+                        <td>{{ venta.usuario.nombre }}</td>
+                        <td>{{ venta.cliente.nombre }}</td>
+                        <td>{{ venta.total }}</td>
                     </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>24/04/2024</td>
-                        <td>Audrey Fabiana Sanchez Lujan</td>
-                        <td>200.00$</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3">Total</td>
-                        <td>800.00$</td>
+                        <td colspan="4">Total</td>
+                        <td>{{ total_ventas }}</td>
                     </tr>
                 </tfoot>
             </table>
