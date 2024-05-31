@@ -47,6 +47,14 @@
               <th>Subtotal</th>
               <th>Eliminar</th>
             </tr>
+            {%for detalleVentas in detalle %}
+            <th>{{detalle.servicio.nombre}}</th>
+              <th>Precio</th>
+              <th>Periodo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Eliminar</th>
+            {% endfor %}
           </thead>
           <tbody></tbody>
         </table>
