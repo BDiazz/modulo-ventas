@@ -1,87 +1,97 @@
 {% load static %}
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <!--Meta tags importantes para la configuracion basica de la pantalla-->
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Registro de Venta</title>
-      <!--Enlace al archivo CSS en el directorio estatico-->
-      <link rel="stylesheet" href="{% static 'css/registrarVenta.css' %}">
-  </head>
-  <body>
-    {% include "barra.html"%}
-    <!--Contenedor principal para la pagina-->
-      <div class="container">
-        <!--Grupo de formulario para seleccionar el cliente-->
-          <h1>Registro de Venta</h1>
-          <form>
-              <div class="form-group">
-                  <label for="cliente">Cliente</label>
-                  <select id="cliente" name="cliente">
-                      <option value="buscar-mas">Buscar más...</option>
-                  </select>
-              </div>
-              <!--Grupo de formulario para la fecha-->
-              <div class="form-group">
-                  <label for="fecha">Fecha:</label>
-                  <input type="text" id="fecha" name="fecha" value= "{{fecha.day}}/{{fecha.month}}/{{fecha.year}}" readonly>
-              </div>
-              <!--Grupo de formulario para la ID-->
-              <div class="form-group">
-                  <label for="id">ID:</label>
-                  <input type="text" id="id" name="id" value="----" readonly>
-              </div>
-              <!--Grupo de formulario para seleccionar el metodo de pago-->
-              <div class="form-group">
-                  <label for="metodo-pago">Método de pago:</label>
-                  <select id="metodo-pago" name="metodo-pago">
-                      <option value="efectivo">Efectivo</option>
-                      <option value="tarjeta-credito">Tarjeta de Crédito</option>
-                      <option value="tarjeta-debito">Tarjeta de Débito</option>
-                  </select>
-              </div>
-              <!--Tabla para mostrar los servicios agregados-->
-              <div class="data-grid">
-                  <table>
-                      <thead>
-                          <tr>
-                              <th>Servicio</th>
-                              <th>Precio</th>
-                              <th>Periodo</th>
-                              <th>Impuesto %</th>
-                              <th>Impuesto Calc</th>
-                              <th>Eliminar</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <!-- Fila de ejemplo, esta se puede eliminar cuando se implementa la lógica -->
-                          <tr>
-                              <td>Seguridad</td>
-                              <td>$200</td>
-                              <td>1 mes</td>
-                              <td>13%</td>
-                              <td>$26</td>
-                              <td><button type="button" class="delete-button">🗑️</button></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  <!--Boton para agregar un nuevo servicio-->
-                  <button type="button" class="add-service-button">Agregar Servicio</button>
-              </div>
-              <!--seccion para mostrar totales-->
-              <div class="totals">
-                  <p>Importe sin impuesto: $<span id="importe-sin-impuesto">0</span></p>
-                  <p>Impuesto del 13%: $<span id="impuesto">0</span></p>
-                  <p><strong>TOTAL: $<span id="total">0</span></strong></p>
-              </div>
-              <!--botones para guardar o cancelar-->
-              <div class="form-actions">
-                  <button type="submit" class="save-button">Guardar</button>
-                  <button type="button" class="cancel-button">Cancelar</button>
-              </div>
-          </form>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Venta</title>
+  <link rel="stylesheet" href="{% static 'css/registrarVenta.css' %}">
+  <script src="{% static 'js/registrarVenta.js' %}" defer></script>
+</head>
+<body>
+  {% include "barra.html" %}
+  <div class="container">
+    <div class="header">
+      <h1>Registro de Venta</h1>
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="cliente">Cliente</label>
+        <select id="cliente" name="cliente">
+          {% for cliente in clientes %}
+          <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+          {% endfor %}
+        </select>
       </div>
-  </body>
-  </html>
-  
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="text" id="fecha" name="fecha" value="{{ fecha.day }}/{{ fecha.month }}/{{ fecha.year }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="metodo-pago">Método de pago:</label>
+        <select id="metodo-pago" name="metodo-pago">
+          <option value="efectivo">Efectivo</option>
+          <option value="tarjeta-credito">Tarjeta de Crédito</option>
+          <option value="tarjeta-debito">Tarjeta de Débito</option>
+        </select>
+      </div>
+      <div class="data-grid">
+        <table id="servicios-table">
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Precio</th>
+              <th>Periodo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Eliminar</th>
+            </tr>
+            {%for detalleVentas in detalle %}
+            <th>{{detalle.servicio.nombre}}</th>
+              <th>Precio</th>
+              <th>Periodo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Eliminar</th>
+            {% endfor %}
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button type="button" class="add-service-button" onclick="showServiceModal()">Agregar Servicio</button>
+      </div>
+      <div class="totals">
+        <p>Importe sin impuesto: $<span id="importe-sin-impuesto">0</span></p>
+        <p>Impuesto del 13%: $<span id="impuesto">0</span></p>
+        <p><strong>TOTAL: $<span id="total">0</span></strong></p>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="save-button">Guardar</button>
+        <button type="button" class="cancel-button">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal para agregar servicio -->
+  <div id="service-modal" style="display: none;">
+    <div>
+      <h2>Agregar Servicio</h2>
+      <div>
+        <label for="servicio-select">Servicio</label>
+        <select id="servicio-select"></select>
+      </div>
+      <div>
+        <label for="periodo-select">Periodo</label>
+        <select id="periodo-select"></select>
+      </div>
+      <div>
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" min="1" value="1">
+      </div>
+      <button type="button" onclick="addService()">Agregar</button>
+      <button type="button" onclick="closeServiceModal()">Cerrar</button>
+    </div>
+  </div>
+</body>
+</html>
+

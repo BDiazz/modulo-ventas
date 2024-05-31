@@ -28,4 +28,6 @@ urlpatterns = [
     path('consultarVentas/', consultar_ventas, name= 'consultar_ventas'),
      path('modificarVenta/<int:venta_id>/',  modificarVenta, name='modificar_venta'),
 
+    path('modificarVenta/', modificarVenta),
+    path('eliminarVenta/<str:identificador>/', eliminarVenta),
 ]

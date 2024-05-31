@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Detalle de Venta</title>
+    <link rel="stylesheet" href="{% static 'css/crear_detalle_venta.css' %}">
+</head>
+<body>
+    <h1>Agregar Detalle de Venta para Venta #{{ venta.id }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Agregar Detalle</button>
+    </form>
+    <a href="{% url 'detalles_venta' venta.id %}">Volver a la Venta</a>
+</body>
+</html>
