@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Ventas</title>
+    {% load static %}
+    {% include "barra.html" %}
+    <link rel="stylesheet" href="{% static 'css/consultarVentas.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+        </header>
+        <main>
+            <h1>Listado de Ventas</h1>
+            <div class="actions">
+                <a class="btn" href="{% url 'registrarVenta' %}">Nuevo</a>
+                <form class="search-form" method="get" action="{% url 'consultar_ventas' %}">
+                    <label for="filtro">Buscar por:</label>
+                    <select name="filtro" id="filtro">
+                        <option value="dia">Día</option>
+                        <option value="semana">Semana</option>
+                        <option value="mes">Mes</option>
+                        <option value="anio">Año</option>
+                        <option value="todas">Todas</option>
+                    </select>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Vendedor</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venta in ventas %}
+                    <tr>
+                        <td><a href="{% url 'modificar_venta' venta.id %}">{{ venta.id }}</a></td>
+                        <td>{{ venta.fecha }}</td>
+                        <td>{{ venta.usuario.nombre }}</td>
+                        <td>{{ venta.cliente.nombre }}</td>
+                        <td>{{ venta.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Total</td>
+                        <td>{{ total_ventas }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

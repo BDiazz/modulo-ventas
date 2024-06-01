@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modulo de Ventas</title>
+    {% load static %}
+    {% include "barra.html"%}
+    <link type="text/css" rel="stylesheet" href='{% static "css/generarReporteDeVentas.css" %}'/>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="user-info">
+            
+            </div>
+        </header>
+        
+        <main>
+            <div class="search-bar">
+                <label for="fecha-inicio">Fecha de inicio:</label>
+                <input type="date" id="fecha-inicio" value="2024-04-01">
+                <label for="fecha-fin">Fecha de fin:</label>
+                <input type="date" id="fecha-fin" value="2024-05-25">
+                <button>Buscar</button>
+            </div>
+            <div class="content">
+                <h2>Ventas</h2>
+                <div class="chart">
+                    <canvas id="pieChart" width="300" height="300"></canvas>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="color-box" style="background-color: #cccccc;"></div>
+                            <span>Servicio de locales</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="color-box" style="background-color: #999999;"></div>
+                            <span>Servicio de Parqueo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Numero</th>
+                                <th>Fecha de creacion</th>
+                                <th>Cliente</th>
+                                <th>Vendedor</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>24/04/2024</td>
+                                <td>Jose Rodriguez</td>
+                                <td>Kevin Gonzalez</td>
+                                <td>600.00$</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>24/04/2024</td>
+                                <td>Luz Gomez</td>
+                                <td>Audrey Lujan</td>
+                                <td>200.00$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="summary">
+                    <div class="summary-item">
+                        <span>Venta por servicio de parqueo</span>
+                        <span>200.00$</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Venta por servicio de locales</span>
+                        <span>600.00$</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total</span>
+                        <span>800.00$</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+</body>
+</html>
