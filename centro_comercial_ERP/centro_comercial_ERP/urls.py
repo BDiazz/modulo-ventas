@@ -18,8 +18,14 @@ from django.contrib import admin
 from django.urls import path
 #Aqui se importan las vistas
 from modulo_ventas.views import registrarVenta
+from modulo_ventas.views import consultarServicios
+from modulo_ventas.views import regristarServicio
+from modulo_ventas.views import modificarEliminarServicio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('registrarVenta/', registrarVenta),
+    path('consultarServicios/', consultarServicios, name='consultarServicios'),
+    path('registrarServicio/', regristarServicio),
+    path('modificarEliminarServicio/', modificarEliminarServicio),
 ]

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Meta tags importantes para la configuración básica de la pantalla-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registro de Servicios</title>
+    <!--Enlace al archivo CSS para las vistas de servicios-->
+    <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  </head>
+  <body>
+    {% include "barra.html"%}
+    <!--Contenedor principal para la pagina-->
+    <div class="container">
+      <!--Grupo de formulario para seleccionar el cliente-->
+      <h1>Consulta de Servicios</h1>
+      <div class="contenedor">
+        <label for="buscar">Buscar por:</label>
+        <div class="form-gruop">
+          <select id="buscar" name="buscar">
+            <option value="id">ID</option>
+            <option value="numero">Numero</option>
+            <option value="categoria">Categoría</option>
+            <option value="tipo">Tipo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="search" id="buscar" placeholder="Ingrese búsqueda" />
+        </div>
+        <button onclick="buscar()" type="button" class="save-button"> Buscar </button>
+      </div>
+      <!--Tabla para mostrar los servicios agregados-->
+      <div class="data-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Numero</th>
+              <th>Categoría</th>
+              <th>Tipo</th>
+              <th>ID</th>
+              <th>Empleado</th>
+              <th>Periodo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Fila de ejemplo, eliminar cuando se implementa la lógica -->
+            <tr>
+              <td>01</td>
+              <td>Local</td>
+              <td>L30</td>
+              <td>L003</td>
+              <td>Pablo Pérez</td>
+              <td>3 meses</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Servicio</td>
+              <td>Seguridad</td>
+              <td>S002</td>
+              <td>Alejandra Flores</td>
+              <td>1 año</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>Servicio</td>
+              <td>Publicidad</td>
+              <td>S008</td>
+              <td>Kevin Jovel</td>
+              <td>6 meses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="botones-container">
+        <!--Botón para agregar un nuevo servicio-->
+        <a href = "http://127.0.0.1:8000/registrarServicio/" class="save-button">Agregar Servicio</a>
+        <!--Botón para modificar/eliminar un servicio-->
+        <a href = "http://127.0.0.1:8000/modificarEliminarServicio/" class="modif-button">Modificar/Eliminar</a>
+      </div>
+    </div>
+  </body>
+</html>

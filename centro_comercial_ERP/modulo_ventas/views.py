@@ -7,3 +7,10 @@ import datetime
 def registrarVenta(request):
     fecha_actual = datetime.datetime.now
     return render(request,'registrarVenta.html', {"fecha": fecha_actual,})
+def consultarServicios(request):
+    return render(request, 'consultarServicios.html')
+def regristarServicio(request):
+    return render(request, 'registrarServicio.html')
+def modificarEliminarServicio(request):
+    return render(request, 'modificarEliminarServicio.html')
+

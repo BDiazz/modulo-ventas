@@ -56,7 +56,7 @@ ROOT_URLCONF = 'centro_comercial_ERP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r"C:\Users\DV210\OneDrive\Escritorio\Proyecto-HDP115-2024\modulo-ventas\centro_comercial_ERP\modulo_ventas\templates"],
+        'DIRS': [r"C:\Proyecto\modulo-ventas\centro_comercial_ERP\modulo_ventas\templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Ventas',
         'USER': 'postgres',
-        'PASSWORD': 'administrador',
+        'PASSWORD': '12345',
         'HOST': '127.0.0.1',
         'DATABASE_PORT': '5432'
     }
@@ -88,7 +88,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth"C:\Proyecto""C:\Proyecto"-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
