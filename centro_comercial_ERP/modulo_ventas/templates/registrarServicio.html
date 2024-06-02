@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Meta tags importantes para la configuración básica de la pantalla-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registrar Servicio</title>
+     <!--Enlace al archivo CSS para las vistas de servicios-->
+     <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  </head>
+  <body>
+    {% include "barra.html"%}
+    <!--Contenedor principal para la página-->
+    <div class="container">
+        <h1>Registrar Servicio</h1>
+      <div class="contenedor">
+        <div class="form-group">
+          <label for="periodo">Seleccionar:</label>
+          <select id="" name="">
+            <option value="servicio">Servicio</option>
+            <option value="evento">Evento</option>
+            <option value="local">Local</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="search" id="buscar" placeholder="Ingrese búsqueda" />
+          <button type="button" class="save-button">Buscar</button>
+        </div>  
+      </div>
+      <div class="contenedor">
+        <div class="form-group">
+          <div class="half-width data-grid">
+            <table>
+              <thead>
+                <tr>
+                  <th>Servicio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Seguridad</td>
+                </tr>
+                <tr>
+                  <td>Publicidad</td>
+                </tr>
+                <tr>
+                  <td>Capacitación</td>
+                </tr>
+                <tr>
+                  <td>Publicidad</td>
+                </tr>
+                <tr>
+                  <td>Capacitación</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="periodo">Periodo:</label>
+          <input type="number"/>    
+          <select id="" name="">
+            <option value="hora">Hora</option>
+            <option value="dia">Dia</option>
+            <option value="mes">Mes</option>
+            <option value="año">Año</option>
+          </select>    
+        </div>
+      </div>
+      <div class="contenedor">
+          <div class="form-group">
+            <input type="date" name="date" />
+          </div>
+          <div class="form-group">
+            <label for="intervalo">Intervalo:</label>
+            <div>
+              <p for="inicio">Inicio:</label>
+              <input type="number" name="inicio" />
+            </div>
+            <div>
+              <p for="inicio">Fin:</label>
+              <input type="number" name="fin" />
+            </div>
+        </div>        
+      </div>
+      <div class="botones-contenedor">
+        <button type="button" class="save-button">Aceptar</button>
+        <a href = "http://127.0.0.1:8000/consultarServicios/" class="cancel-button">Cancelar</a>
+      </div>
+    </div>
+  </body>
+</html>

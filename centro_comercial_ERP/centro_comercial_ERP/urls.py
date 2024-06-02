@@ -24,10 +24,12 @@ urlpatterns = [
     path('registrarVenta/', registrarVenta,name= 'registrarVenta'),
     path('accounts/',include('django.contrib.auth.urls')),
     path('consultarVentas/', consultar_ventas),
-    path('reporteVentas/', generar_reporte_de_ventas),
+    path('reporteVentas/', generar_reporte_de_ventas,name='generarReportes'),
     path('consultarVentas/', consultar_ventas, name= 'consultar_ventas'),
-     path('modificarVenta/<int:venta_id>/',  modificarVenta, name='modificar_venta'),
-
+    path('modificarVenta/<int:venta_id>/',  modificarVenta, name='modificar_venta'),
     path('modificarVenta/', modificarVenta),
     path('eliminarVenta/<str:identificador>/', eliminarVenta),
+    path('consultarServicios/', consultarServicios, name='consultarServicios'),
+    path('registrarServicio/', regristarServicio),
+    path('modificarEliminarServicio/', modificarEliminarServicio),
 ]

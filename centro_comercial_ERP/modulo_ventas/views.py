@@ -16,9 +16,11 @@ def registrarVenta(request):
     fecha_actual = datetime.datetime.now 
     return render(request,'registrarVenta.html', {"fecha": fecha_actual, "clientes": clientesObtenidos,})
 
+@login_required
 def modificarVenta(request):
     return render(request, "modificarEliminarVenta.html")
 
+@login_required
 def eliminarVenta(request, identificador):
     venta = Venta.objects.get(id=identificador)
     venta.delete()
@@ -48,13 +50,21 @@ def consultar_ventas(request):
 
     return render(request, 'consultarVentas.html', {'ventas': ventas, 'total_ventas': total_ventas})
 
-    return render(request, 'generarReporteDeVentas.html')  
-
+@login_required
 def modificarVenta(request):
     return render(request, "modificarEliminarVenta.html")
 
 
-   
 @login_required
 def generar_reporte_de_ventas(request):
     return render(request, 'generarReporteDeVentas.html')  
+
+
+def consultarServicios(request):
+    return render(request, 'consultarServicios.html')
+
+def regristarServicio(request):
+    return render(request, 'registrarServicio.html')
+    
+def modificarEliminarServicio(request):
+    return render(request, 'modificarEliminarServicio.html')
