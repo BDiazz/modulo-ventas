@@ -26,8 +26,8 @@ urlpatterns = [
     path('consultarVentas/', consultar_ventas),
     path('reporteVentas/', generar_reporte_de_ventas),
     path('consultarVentas/', consultar_ventas, name= 'consultar_ventas'),
-     path('modificarVenta/<int:venta_id>/',  modificarVenta, name='modificar_venta'),
-
+    path('modificarVenta/<int:venta_id>/',  modificarVenta, name='modificar_venta'),
     path('modificarVenta/', modificarVenta),
     path('eliminarVenta/<str:identificador>/', eliminarVenta),
+    path('inicio-sesion/', vista_inicio_sesion, name='inicio_sesion'),
 ]
