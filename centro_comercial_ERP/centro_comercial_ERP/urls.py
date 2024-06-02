@@ -32,4 +32,7 @@ urlpatterns = [
     path('consultarServicios/', consultarServicios, name='consultarServicios'),
     path('registrarServicio/', regristarServicio),
     path('modificarEliminarServicio/', modificarEliminarServicio),
+    path('consultarClientes/', consultarClientes, name= 'consultarClientes'),
+    path('registrarCliente/', registrarCliente),
+    path('gestionarCliente/', gestionarCliente),
 ]

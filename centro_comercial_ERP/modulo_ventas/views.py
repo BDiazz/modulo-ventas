@@ -59,12 +59,27 @@ def modificarVenta(request):
 def generar_reporte_de_ventas(request):
     return render(request, 'generarReporteDeVentas.html')  
 
-
+@login_required
 def consultarServicios(request):
     return render(request, 'consultarServicios.html')
 
+@login_required
 def regristarServicio(request):
     return render(request, 'registrarServicio.html')
-    
+
+@login_required  
 def modificarEliminarServicio(request):
     return render(request, 'modificarEliminarServicio.html')
+
+@login_required
+def consultarClientes(request):
+    return render(request,'consultarClientes.html')
+
+@login_required
+def registrarCliente(request):
+    return render(request,'registrarCliente.html')
+
+@login_required
+def gestionarCliente(request):
+    return render(request,'gestionarCliente.html')
+

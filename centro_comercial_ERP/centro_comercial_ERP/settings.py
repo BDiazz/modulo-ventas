@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'centro_comercial_ERP.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+      'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Ventas',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': 'RC21111',
         'HOST': '127.0.0.1',
         'DATABASE_PORT': '5432'
     }
