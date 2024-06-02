@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Clientes</title>
+    <link rel="stylesheet" href="{% static 'css/consultarClientes.css' %}">
+</head>
+<body>
+    {% include "barra.html" %}
+    <div>
+        <h1>CONSULTAR CLIENTES</h1>
+    </div>
+    <main>
+        <div class="search-section">
+            <label for="search">Buscar por:</label>
+            <select id="filter">
+                <option value="nombre">Nombre</option>
+                <option value="telefono">Teléfono</option>
+                <option value="correo">Correo electrónico</option>
+                <option value="dui">DUI</option>
+            </select>
+            <input type="text" id="search" placeholder="Buscar...">
+            <button><img src="{% static 'images/search-icon.png' %}" alt="Buscar"></button>
+            <button id="new-client">Nuevo Cliente</button>
+
+            <form action="{% url 'registrarCliente' %}" method="get">
+                <button type="submit">registrarCliente</button>
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>DUI</th>
+                    <th>Teléfono</th>
+                    <th>Correo electrónico</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for modulo_ventas_clientes in modulo_ventas_clientes %}
+                <tr>
+                    <td>{{ modulo_ventas_clientes.nombre }}</td>
+                    <td>{{ cliente.dui }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ modulo_ventas_clientes.correo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
