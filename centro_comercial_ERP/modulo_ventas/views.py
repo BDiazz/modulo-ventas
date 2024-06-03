@@ -27,7 +27,7 @@ def eliminarVenta(request, identificador):
     return redirect("/consultarVentas")
 
 @login_required
-def consultar_ventas(request):
+def consultarVentas(request):
     filtro = request.GET.get('filtro', 'todas')
 
     ventas = Venta.objects.all()
@@ -56,18 +56,33 @@ def modificarVenta(request):
 
 
 @login_required
-def generar_reporte_de_ventas(request):
+def generarReporteDeVentas(request):
     return render(request, 'generarReporteDeVentas.html')  
 
-
+@login_required
 def consultarServicios(request):
     return render(request, 'consultarServicios.html')
 
+@login_required
 def registrarServicio(request):
     return render(request, 'registrarServicio.html')
-    
+
+@login_required  
 def modificarEliminarServicio(request):
     return render(request, 'modificarEliminarServicio.html')
 
+@login_required
+def consultarClientes(request):
+    return render(request,'consultarClientes.html')
+
+@login_required
+def registrarCliente(request):
+    return render(request,'registrarCliente.html')
+
+@login_required
+def gestionarCliente(request):
+    return render(request,'gestionarCliente.html')
+    
+@login_required
 def menu(request):
     return render(request, 'index.html')
