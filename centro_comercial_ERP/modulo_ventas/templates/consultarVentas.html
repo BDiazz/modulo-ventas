@@ -16,7 +16,7 @@
             <h1>Listado de Ventas</h1>
             <div class="actions">
                 <a class="btn" href="{% url 'registrarVenta' %}">Nuevo</a>
-                <form class="search-form" method="get" action="{% url 'consultar_ventas' %}">
+                <form class="search-form" method="get" action="{% url 'consultarVentas' %}">
                     <label for="filtro">Buscar por:</label>
                     <select name="filtro" id="filtro">
                         <option value="dia">Día</option>
@@ -41,7 +41,7 @@
                 <tbody>
                     {% for venta in ventas %}
                     <tr>
-                        <td><a href="{% url 'modificar_venta' venta.id %}">{{ venta.id }}</a></td>
+                        <td><a href="{% url 'modificarVenta' venta.id %}">{{ venta.id }}</a></td>
                         <td>{{ venta.fecha }}</td>
                         <td>{{ venta.usuario.nombre }}</td>
                         <td>{{ venta.cliente.nombre }}</td>
