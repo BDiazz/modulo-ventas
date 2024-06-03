@@ -63,8 +63,11 @@ def generar_reporte_de_ventas(request):
 def consultarServicios(request):
     return render(request, 'consultarServicios.html')
 
-def regristarServicio(request):
+def registrarServicio(request):
     return render(request, 'registrarServicio.html')
     
 def modificarEliminarServicio(request):
     return render(request, 'modificarEliminarServicio.html')
+
+def menu(request):
+    return render(request, 'index.html')
