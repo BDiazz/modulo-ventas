@@ -1,3 +1,4 @@
+
 """
 Django settings for centro_comercial_ERP project.
 
@@ -128,3 +129,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, r"C:\Users\DV210\OneDrive\Escritorio\
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

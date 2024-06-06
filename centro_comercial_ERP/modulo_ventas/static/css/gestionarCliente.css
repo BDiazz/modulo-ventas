@@ -1,0 +1,114 @@
+/* Estilo general para el cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+}
+
+/* Estilo para la barra de navegación */
+.barra {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+/* Estilo del menú de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo de los elementos de la lista */
+nav ul li {
+    margin: 0 15px;
+}
+
+/* Estilo de los enlaces de navegación */
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px 15px;
+    display: block;
+}
+
+/* Contenedor principal para centrar todo el contenido */
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Ajuste para la barra de navegación fija */
+.spacer {
+    height: 0px;
+}
+
+/* Estilo para el contenedor del formulario */
+.container {
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* Centrado del texto del título */
+h1 {
+    text-align: center;
+}
+
+/* Estilo del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo de las etiquetas */
+label {
+    margin-top: 10px;
+}
+
+/* Estilo de los campos de entrada de texto y correo electrónico */
+input[type="text"], input[type="email"] {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+/* Contenedor de botones */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Estilo de los botones */
+.button-container button {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* Efecto hover para los botones */
+.a-container button:hover {
+    background-color: #dcdcdc;
+}

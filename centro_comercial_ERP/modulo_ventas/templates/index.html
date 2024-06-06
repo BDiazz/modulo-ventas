@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Ventas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+<body>
+    <div class="menu">
+        <h1>Menú de Ventas</h1>
+        <a href="{% url 'consultarVentas' %}">Consultar Ventas</a>
+        <a href="{% url 'consultarClientes' %}">Consultar Clientes</a>
+        <a href="{% url 'consultarServicios' %}">Consultar Servicios</a>
+        <a href="{% url 'generarReportes' %}">Reporte Ventas</a>
+    </div>
+</body>
+</html>
