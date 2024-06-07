@@ -87,9 +87,9 @@ def consultarClientes(request):
         elif filter_by == 'dui':
             clientes = Cliente.objects.filter(dui__icontains=query)
         else:
-            clientes = Cliente.objects.all()
+            clientes = Cliente.objects.all().order_by('id')
     else:
-        clientes = Cliente.objects.all()
+        clientes = Cliente.objects.all().order_by()
     
     return render(request, 'consultarClientes.html', {'clientes': clientes, 'search': query, 'filter': filter_by})
 
