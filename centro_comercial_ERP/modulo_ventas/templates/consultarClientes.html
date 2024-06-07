@@ -14,18 +14,18 @@
     </div>
     <main>
         <div class="search-section">
-            <label for="search">Buscar por:</label>
-            <select id="filter">
-                <option value="nombre">Nombre</option>
-                <option value="telefono">Teléfono</option>
-                <option value="correo">Correo electrónico</option>
-                <option value="dui">DUI</option>
-            </select>
-            <input type="text" id="search" placeholder="Buscar...">
-            <button> Buscar</button>
-            <a href="http://127.0.0.1:8000/registrarCliente/" class="button-link" id="new-client">Nuevo Cliente</a>
-
-            
+            <form method="get">
+                <label for="search">Buscar por:</label>
+                <select id="filter" name="filter">
+                    <option value="nombre" {% if filter == "nombre" %}selected{% endif %}>Nombre</option>
+                    <option value="telefono" {% if filter == "telefono" %}selected{% endif %}>Teléfono</option>
+                    <option value="correo" {% if filter == "correo" %}selected{% endif %}>Correo electrónico</option>
+                    <option value="dui" {% if filter == "dui" %}selected{% endif %}>DUI</option>
+                </select>
+                <input type="text" id="search" name="search" value="{{ search }}" placeholder="Buscar...">
+                <button type="submit">Buscar</button>
+                <a href="{% url 'registrarCliente' %}" class="button-link" id="new-client">Nuevo Cliente</a>
+            </form>
         </div>
         <table>
             <thead>
@@ -37,12 +37,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for modulo_ventas_clientes in modulo_ventas_clientes %}
+                {% for c in clientes %}
                 <tr>
-                    <td>{{ modulo_ventas_clientes.nombre }}</td>
-                    <td>{{ cliente.dui }}</td>
-                    <td>{{ cliente.telefono }}</td>
-                    <td>{{ modulo_ventas_clientes.correo }}</td>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.dui }}</td>
+                    <td>{{ c.telefono }}</td>
+                    <td>{{ c.correo }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

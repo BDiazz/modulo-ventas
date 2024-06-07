@@ -73,7 +73,24 @@ def modificarEliminarServicio(request):
 
 @login_required
 def consultarClientes(request):
-    return render(request,'consultarClientes.html')
+    query = request.GET.get('search', '')
+    filter_by = request.GET.get('filter', 'nombre')
+    
+    if query:
+        if filter_by == 'nombre':
+            clientes = Cliente.objects.filter(nombre__icontains=query)
+        elif filter_by == 'telefono':
+            clientes = Cliente.objects.filter(telefono__icontains=query)
+        elif filter_by == 'correo':
+            clientes = Cliente.objects.filter(correo__icontains=query)
+        elif filter_by == 'dui':
+            clientes = Cliente.objects.filter(dui__icontains=query)
+        else:
+            clientes = Cliente.objects.all()
+    else:
+        clientes = Cliente.objects.all()
+    
+    return render(request, 'consultarClientes.html', {'clientes': clientes, 'search': query, 'filter': filter_by})
 
 @login_required
 def registrarCliente(request):
