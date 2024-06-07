@@ -1,0 +1,78 @@
+/* Estilos para la página de Consultar Servicios */
+
+/* Estilos para el encabezado */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el contenedor principal */
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para la sección de búsqueda */
+.searchSection {
+    margin-bottom: 20px;
+}
+
+.searchSection label {
+    font-weight: bold;
+}
+
+.searchSection select, .searchSection input[type="text"], .searchSection button {
+    margin-right: 10px;
+}
+
+.searchSection select, .searchSection input[type="text"] {
+    padding: 5px;
+}
+
+.searchSection button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.searchSection button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la tabla de servicios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+table td {
+    vertical-align: top;
+}
+
+/* Estilos para los enlaces de opciones */
+a.buttonLink {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a.buttonLink:hover {
+    background-color: #218838;
+}

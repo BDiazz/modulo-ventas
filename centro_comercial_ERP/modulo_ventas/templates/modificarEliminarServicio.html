@@ -1,113 +1,29 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!--Meta tags importantes para la configuración básica de la pantalla-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Informacion del Servicio</title>
-    <!--Enlace al archivo CSS para las vistas de servicios-->
-    <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
-  </head>
-  <body>
-    <!-- Barra de navegación -->
-    {% include "barra.html"%}
-    <!--Contenedor principal para la página-->
-    <div class="container">
-      <h1>Información del Servicio</h1>
-      <form action="">
-        <div class="contenedor">
-          <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombreServicio"
-              placeholder="Ingrese el nombre"
-            />
-          </div>
-          <div class="form-group">
-            <button type="button" class="cancel-button">Eliminar</button>
-          </div>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar o Eliminar Servicio</title>
+    <link rel="stylesheet" href="{% static 'css/modificarEliminarServicio.css' %}">
+</head>
+<body>
+    {% include "barra.html" %}
+    <div class="spacer"></div>
+    <div class="mainContainer">
+        <div class="container">
+            <h1>Modificar o Eliminar Servicio</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ servicioForm.as_p }}
+                {{ periodoForm.as_p }}
+                <div class="buttonContainer">
+                    <a href="{% url 'consultarServicios' %}" class="cancelBtn">Cancelar</a>
+                    <button type="submit" class="registerBtn">Guardar</button>
+                    <button type="submit" name="eliminar" class="deleteBtn">Eliminar Servicio</button>
+                </div>
+            </form>
         </div>
-        <div class="contenedor">
-          <div class="form-group">
-            <label for="descrip">Descripción:</label>
-            <input
-              type="text"
-              id="nombreServicio"
-              placeholder="Ingrese la descripción" />
-          </div>
-          <div class="form-group">
-            <label for="servicio">Categoría:</label>
-            <select id="categoria" name="categoria">
-              <option value="local">Local</option>
-              <option value="servicios">Servicios</option>
-              <option value="evento">Evento</option>
-              <option value="otro">Otro (Especificar)</option>
-            </select>
-          </div>
-        </div>
-        <div class="contenedor">
-          <div class="form-group">
-            <label for="periodo">Periodo:</label>
-            <select id="periodo" name="periodo">
-              <option value="dia">Día</option>
-              <option value="semana">Semana</option>
-              <option value="mes">Mes</option>
-              <option value="año">Año</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="precio">Precio:</label>
-            <input
-              type="number"
-              id="precio"
-              name="precio"
-              min="0"
-              step="0.01"
-              placeholder="$0.00"
-            />
-          </div>
-          <div class="form-group">
-            <button type="button" class="save-button">Agregar</button>
-          </div>
-          <div class="form-group">
-            <label for="metodo">Método de pago:</label>
-            <select id="metodo" name="metodo">
-              <option value="credito">Crédito</option>
-              <option value="debito">Débito</option>
-              <option value="efectivo">Efectivo</option>
-            </select>
-          </div>        
-        </div>
-      </form>
-      <!--Tabla para mostrar los servicios agregados-->
-      <div class="data-grid">
-        <table>
-          <thead>
-            <tr>
-              <th>Precio</th>
-              <th>Periodo</th>
-              <th>IVA 13%</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Fila de ejemplo, eliminar cuando se implemente la lógica -->
-            <tr>
-              <td>$700</td>
-              <td>Mes</td>
-              <td>$91</td>
-              <td>$791</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="botones-contenedor">
-        <button type="button" class="modif-button">Modificar</button>
-        <a href = "http://127.0.0.1:8000/consultarServicios/" class="cancel-button">Cancelar</a>
-      </div>
     </div>
-  </body>
+</body>
 </html>
-
