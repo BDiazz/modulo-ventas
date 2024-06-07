@@ -1,18 +1,54 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!--Meta tags importantes para la configuración básica de la pantalla-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Detalle de Venta</title>
-    <link rel="stylesheet" href="{% static 'css/crear_detalle_venta.css' %}">
+    <title>Gestionar Cliente</title>
+    <!--Enlace al archivo CSS en el directorio estático-->
 </head>
 <body>
-    <h1>Agregar Detalle de Venta para Venta #{{ venta.id }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Agregar Detalle</button>
-    </form>
-    <a href="{% url 'detalles_venta' venta.id %}">Volver a la Venta</a>
+    <!-- Incluye la barra de navegación -->
+    {% include "barra.html" %}
+    
+    <!-- Espaciador para ajustar la barra fija -->
+    <div class="spacer"></div>
+    
+    <div class="main-container">
+        <div class="container">
+            <h1>Detalle Venta</h1>
+            <form method="post" action="{% url 'crearDetalleVenta' %}">
+                {% csrf_token %}
+                <label for="servicio">Servicio:</label>
+                <select name="servicios">
+                   {{%for s in servicios%}}
+                    <option value="nombre">{{s.nombre}}</option>
+                    {{%endfor%}}
+                </select>
+                
+                <label for="periodo">Periodo:</label>
+                <select name="Periodo">
+                   {{%for s in periodo de servicio elegido%}}
+                    <option value="nombre">{{s.nombre}}</option>
+                    {{%endfor%}}
+                </select>
+
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" name="telefono" >
+
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="correo" >
+
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="direccion" >
+
+                <div class="button-container">
+                    <a href="{% url 'consultarClientes' %}" class="cancel-btn">Cancelar</a>
+                    <button type="submit" class="register-btn">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

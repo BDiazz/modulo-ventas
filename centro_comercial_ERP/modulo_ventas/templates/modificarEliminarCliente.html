@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Cliente</title>
+    <link rel="stylesheet" href="{% static 'css/gestionarCliente.css' %}">
+</head>
+<body>
+    {% include "barra.html" %}
+    <div class="spacer"></div>
+    <div class="main-container">
+        <div class="container">
+            <h1>Gestionar Cliente</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="button-container">
+                    <a href="{% url 'consultarClientes' %}" class="cancel-btn">Cancelar</a>
+                    <button type="submit" name="guardar" class="register-btn">Guardar</button>
+                    <button type="submit" name="eliminar" class="delete-btn">Eliminar Cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

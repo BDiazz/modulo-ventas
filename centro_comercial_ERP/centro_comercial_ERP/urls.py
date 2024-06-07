@@ -35,5 +35,5 @@ urlpatterns = [
     path('menu/',menu),
     path('consultarClientes/', consultarClientes, name= 'consultarClientes'),
     path('registrarCliente/', registrarCliente, name='registrarCliente'),
-    path('gestionarCliente/', gestionarCliente),
+    path('modificarEliminarCliente/<int:cliente_id>/', modificarEliminarCliente, name='modificarEliminarCliente'),
 ]

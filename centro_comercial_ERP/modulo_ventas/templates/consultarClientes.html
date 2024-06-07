@@ -30,19 +30,23 @@
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>DUI</th>
                     <th>Teléfono</th>
                     <th>Correo electrónico</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for c in clientes %}
                 <tr>
+                    <td>{{c.id}}</td>
                     <td>{{ c.nombre }}</td>
                     <td>{{ c.dui }}</td>
                     <td>{{ c.telefono }}</td>
                     <td>{{ c.correo }}</td>
+                    <td><a href="{% url 'modificarEliminarCliente' c.id %}">Opciones</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

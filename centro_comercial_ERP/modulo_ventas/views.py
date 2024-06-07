@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template.loader import get_template
 from .models import *
@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
+from .forms import *
 # Create your views here.
 
 @login_required
@@ -92,13 +93,36 @@ def consultarClientes(request):
     
     return render(request, 'consultarClientes.html', {'clientes': clientes, 'search': query, 'filter': filter_by})
 
-@login_required
-def registrarCliente(request):
-    return render(request,'registrarCliente.html')
 
 @login_required
-def gestionarCliente(request):
-    return render(request,'gestionarCliente.html')
+def registrarCliente(request):
+    if request.method == 'POST':
+        # Procesar el formulario enviado
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda el nuevo registro en la base de datos
+            return redirect('consultarClientes')  # Redirige a la página de consulta de clientes
+    else:
+        # Mostrar el formulario vacío
+        form = ClienteForm()
+    return render(request, 'registrarCliente.html', {'form': form})
+
+
+@login_required
+def modificarEliminarCliente(request, cliente_id):
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+    if request.method == 'POST':
+        if 'guardar' in request.POST:
+            form = ClienteForm(request.POST, instance=cliente)
+            if form.is_valid():
+                form.save()
+                return redirect('consultarClientes')
+        elif 'eliminar' in request.POST:
+            cliente.delete()
+            return redirect('consultarClientes')
+    else:
+        form = ClienteForm(instance=cliente)
+    return render(request, 'modificarEliminarCliente.html', {'form': form})
     
 @login_required
 def menu(request):
