@@ -135,7 +135,7 @@ def consultarClientes(request):
         else:
             clientes = Cliente.objects.all().order_by('id')
     else:
-        clientes = Cliente.objects.all().order_by()
+        clientes = Cliente.objects.all().order_by('id')
     
     return render(request, 'consultarClientes.html', {'clientes': clientes, 'search': query, 'filter': filter_by})
 

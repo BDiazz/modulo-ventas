@@ -34,12 +34,6 @@ nav ul li a {
     text-decoration: none;
 }
 
-.user-icon {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    color: white;
-}
 
 main {
     padding: 20px;
