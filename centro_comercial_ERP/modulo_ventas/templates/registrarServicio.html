@@ -1,28 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Registrar Servicio</title>
-    <link rel="stylesheet" href="{% static 'css/registrarServicios.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registrarServicios.css' %}" />
 </head>
 <body>
-    {% include "barra.html" %}
-    <div class="spacer"></div>
-    <div class="mainContainer">
-        <div class="container">
-            <h1>Registrar Servicio</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ servicioForm.as_p }}
-                {{ periodoForm.as_p }}
-                <div class="buttonContainer">
-                    <a href="{% url 'consultarServicios' %}" class="cancelBtn">Cancelar</a>
-                    <button type="submit" class="registerBtn">Guardar</button>
+    {% include "barra.html"%}
+    <div class="container">
+        <h1>Registrar Servicio</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="contenedor">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre" required />
                 </div>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" name="descripcion" placeholder="Ingrese la descripción" required />
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria">
+                        <option value="local">Local</option>
+                        <option value="servicios">Servicios</option>
+                        <option value="evento">Evento</option>
+                        <option value="otro">Otro (Especificar)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="botones-contenedor">
+                <button type="submit" class="save-button">Guardar</button>
+                <a href="{% url 'consultarServicios' %}" class="cancel-button">Cancelar</a>
+            </div>
+        </form>
     </div>
 </body>
 </html>

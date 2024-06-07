@@ -1,49 +1,93 @@
 /* modificarEliminarServicio.css */
-
-/* Estilos para el contenedor principal */
-.mainContainer {
-    padding: 20px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
-/* Estilos para el contenedor interno */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    width: 80%;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el título */
 h1 {
     text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor {
     margin-bottom: 20px;
 }
 
-/* Estilos para los botones */
-.buttonContainer {
-    margin-top: 20px;
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 0 0 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button.save-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.save-button:hover {
+    background-color: #218838;
+}
+
+button.cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.botones-contenedor {
     text-align: center;
+    margin-top: 20px;
 }
 
-.cancelBtn {
-    margin-right: 10px;
-    padding: 8px 16px;
-    background-color: #ccc;
+a.cancel-button {
+    background-color: #6c757d;
     color: #fff;
-    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
+    text-decoration: none;
 }
 
-.registerBtn {
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.deleteBtn {
-    padding: 8px 16px;
-    background-color: #f44336;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+a.cancel-button:hover {
+    background-color: #5a6268;
 }

@@ -1,29 +1,43 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modificar o Eliminar Servicio</title>
-    <link rel="stylesheet" href="{% static 'css/modificarEliminarServicio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modificarEliminarServicio.css' %}" />
 </head>
 <body>
     {% include "barra.html" %}
-    <div class="spacer"></div>
-    <div class="mainContainer">
-        <div class="container">
-            <h1>Modificar o Eliminar Servicio</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ servicioForm.as_p }}
-                {{ periodoForm.as_p }}
-                <div class="buttonContainer">
-                    <a href="{% url 'consultarServicios' %}" class="cancelBtn">Cancelar</a>
-                    <button type="submit" class="registerBtn">Guardar</button>
-                    <button type="submit" name="eliminar" class="deleteBtn">Eliminar Servicio</button>
+    <div class="container">
+        <h1>Modificar o Eliminar Servicio</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="contenedor">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="{{ servicio.nombre }}" required />
                 </div>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" name="descripcion" value="{{ servicio.descripcion }}" required />
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria">
+                        <option value="local" {% if servicio.categoria == 'local' %}selected{% endif %}>Local</option>
+                        <option value="servicios" {% if servicio.categoria == 'servicios' %}selected{% endif %}>Servicios</option>
+                        <option value="evento" {% if servicio.categoria == 'evento' %}selected{% endif %}>Evento</option>
+                        <option value="otro" {% if servicio.categoria == 'otro' %}selected{% endif %}>Otro (Especificar)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="botones-contenedor">
+                <button type="submit" name="guardar" class="save-button">Guardar Cambios</button>
+                <button type="submit" name="eliminar" class="cancel-button">Eliminar</button>
+                <a href="{% url 'consultarServicios' %}" class="cancel-button">Cancelar</a>
+            </div>
+        </form>
     </div>
 </body>
 </html>

@@ -13,60 +13,43 @@ from .forms import *
 
 def registrarServicio(request):
     if request.method == 'POST':
-        servicio_form = ServicioForm(request.POST)
-        periodo_form = PeriodoForm(request.POST)
-        if servicio_form.is_valid() and periodo_form.is_valid():
-            servicio = servicio_form.save()  # Guardar el servicio primero
-            periodo = periodo_form.cleaned_data['periodos']  # Obtener el período seleccionado
-            servicio.periodo = periodo  # Asignar el período al servicio
-            servicio.save()  # Guardar el servicio con el período asociado
-            return redirect('consultarServicios')
-    else:
-        servicio_form = ServicioForm()
-        periodo_form = PeriodoForm()
-
-    return render(request, 'registrarServicio.html', {'servicioForm': servicio_form, 'periodoForm': periodo_form})
-
+        nombre = request.POST['nombre']
+        descripcion = request.POST['descripcion']
+        categoria = request.POST['categoria']
+        Servicio.objects.create(nombre=nombre, descripcion=descripcion, categoria=categoria)
+        return redirect('consultarServicios')
+    return render(request, 'registrarServicio.html')
 
 def modificarEliminarServicio(request, servicioId):
-    servicio = Servicio.objects.get(id=servicioId)
-    try:
-        periodo = Periodo.objects.get(servicio=servicio)
-    except Periodo.DoesNotExist:
-        periodo = None
-
+    servicio = get_object_or_404(Servicio, id=servicioId)
+    
     if request.method == 'POST':
-        servicioForm = ServicioForm(request.POST, instance=servicio)
-        periodoForm = PeriodoForm(request.POST, instance=periodo)
-        if servicioForm.is_valid() and periodoForm.is_valid():
-            servicioForm.save()
-            if periodoForm.cleaned_data['periodos'] is not None:
-                periodo = periodoForm.save(commit=False)
-                periodo.servicio = servicio
-                periodo.save()
+        if 'guardar' in request.POST:
+            servicio.nombre = request.POST['nombre']
+            servicio.descripcion = request.POST['descripcion']
+            servicio.categoria = request.POST['categoria']
+            servicio.save()
             return redirect('consultarServicios')
-    else:
-        servicioForm = ServicioForm(instance=servicio)
-        periodoForm = PeriodoForm(instance=periodo)
-    return render(request, 'modificarEliminarServicio.html', {'servicioForm': servicioForm, 'periodoForm': periodoForm})
+        elif 'eliminar' in request.POST:
+            servicio.delete()
+            return redirect('consultarServicios')
 
+    return render(request, 'modificarEliminarServicio.html', {'servicio': servicio})
 
 def consultarServicios(request):
-    filter_by = request.GET.get('filter', 'nombre')
-    query = request.GET.get('search', '')
+    query = request.GET.get('query', '')
+    filter_by = request.GET.get('filter_by', 'id')
 
-    # Obtener todos los servicios y sus períodos asociados
-    servicios = Servicio.objects.all()
-    if query:
-        if filter_by == 'nombre':
-            servicios = servicios.filter(nombre__icontains=query)
-        elif filter_by == 'categoria':
-            servicios = servicios.filter(categoria__icontains=query)
+    if filter_by == 'id':
+        servicios = Servicio.objects.filter(id__icontains=query)
+    elif filter_by == 'nombre':
+        servicios = Servicio.objects.filter(nombre__icontains=query)
+    elif filter_by == 'categoria':
+        servicios = Servicio.objects.filter(categoria__icontains(query))
+    else:
+        servicios = Servicio.objects.all()
 
-    # Obtener todos los tipos de período disponibles
-    tipos_de_periodo = Periodo.objects.values_list('tipo', flat=True).distinct()
-
-    return render(request, 'consultarServicios.html', {'servicios': servicios, 'search': query, 'filter': filter_by, 'tipos_de_periodo': tipos_de_periodo})
+    return render(request, 'consultarServicios.html', {'servicios': servicios})
 
 def registrarVenta(request):
     clientesObtenidos = Cliente.objects.all()

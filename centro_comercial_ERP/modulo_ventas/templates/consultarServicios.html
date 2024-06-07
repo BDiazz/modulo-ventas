@@ -1,60 +1,59 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Servicios</title>
-    <link rel="stylesheet" href="{% static 'css/consultarServicios.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Consulta de Servicios</title>
+    <link rel="stylesheet" href="{% static 'css/consultarServicios.css' %}" />
 </head>
 <body>
-    {% include "barra.html" %}
-    <div>
-        <h1>Consultar Servicios</h1>
-    </div>
-    <main>
-        <div class="searchSection">
-            <form method="get">
-                <label for="filter">Buscar por:</label>
-                <select id="filter" name="filter">
-                    <option value="nombre" {% if filter == "nombre" %}selected{% endif %}>Nombre</option>
-                    <option value="categoria" {% if filter == "categoria" %}selected{% endif %}>Categoría</option>
-                </select>
-                <input type="text" id="search" name="search" value="{{ search }}" placeholder="Buscar...">
-                <button type="submit">Buscar</button>
-                <a href="{% url 'registrarServicio' %}" class="buttonLink" id="newService">Nuevo Servicio</a>
-            </form>
+    {% include "barra.html"%}
+    <div class="container">
+        <h1>Consulta de Servicios</h1>
+        <div class="contenedor">
+            <label for="buscar">Buscar por:</label>
+            <div class="form-group">
+                <form method="get" action="{% url 'consultarServicios' %}">
+                    <select id="filter_by" name="filter_by">
+                        <option value="id">ID</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="categoria">Categoría</option>
+                    </select>
+                    <input type="search" id="query" name="query" placeholder="Ingrese búsqueda" />
+                    <button type="submit" class="save-button">Buscar</button>
+                </form>
+            </div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Categoría</th>
-                    <th>Tipo de Período</th>
-                    <th>Precio</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if servicios %}
+        <div class="data-grid">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {% for servicio in servicios %}
-                        <tr>
-                            <td>{{ servicio.id }}</td>
-                            <td>{{ servicio.nombre }}</td>
-                            <td>{{ servicio.descripcion }}</td>
-                            <td>{{ servicio.categoria }}</td>
-                            <td>{{ servicio.periodo.tipo }}</td>
-                            <td>{{ servicio.periodo.precio }}</td>
-                            <td><a href="{% url 'modificarEliminarServicio' servicio.id %}">Modificar/Eliminar</a></td>
-                        </tr>
+                    <tr>
+                        <td>{{ servicio.id }}</td>
+                        <td>{{ servicio.nombre }}</td>
+                        <td>{{ servicio.categoria }}</td>
+                        <td>{{ servicio.descripcion }}</td>
+                        <td>
+                            <a href="{% url 'modificarEliminarServicio' servicio.id %}" class="modif-button">Modificar/Eliminar</a>
+                        </td>
+                    </tr>
                     {% endfor %}
-                {% else %}
-                    <tr><td colspan="7">No se encontraron servicios.</td></tr>
-                {% endif %}
-            </tbody>
-        </table>
-    </main>
+                </tbody>
+            </table>
+        </div>
+        <div class="botones-container">
+            <a href="{% url 'registrarServicio' %}" class="save-button">Agregar Servicio</a>
+        </div>
+    </div>
 </body>
 </html>
