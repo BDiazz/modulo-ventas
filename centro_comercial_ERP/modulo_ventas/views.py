@@ -11,7 +11,63 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 # Create your views here.
 
-@login_required
+def registrarServicio(request):
+    if request.method == 'POST':
+        servicio_form = ServicioForm(request.POST)
+        periodo_form = PeriodoForm(request.POST)
+        if servicio_form.is_valid() and periodo_form.is_valid():
+            servicio = servicio_form.save()  # Guardar el servicio primero
+            periodo = periodo_form.cleaned_data['periodos']  # Obtener el período seleccionado
+            servicio.periodo = periodo  # Asignar el período al servicio
+            servicio.save()  # Guardar el servicio con el período asociado
+            return redirect('consultarServicios')
+    else:
+        servicio_form = ServicioForm()
+        periodo_form = PeriodoForm()
+
+    return render(request, 'registrarServicio.html', {'servicioForm': servicio_form, 'periodoForm': periodo_form})
+
+
+def modificarEliminarServicio(request, servicioId):
+    servicio = Servicio.objects.get(id=servicioId)
+    try:
+        periodo = Periodo.objects.get(servicio=servicio)
+    except Periodo.DoesNotExist:
+        periodo = None
+
+    if request.method == 'POST':
+        servicioForm = ServicioForm(request.POST, instance=servicio)
+        periodoForm = PeriodoForm(request.POST, instance=periodo)
+        if servicioForm.is_valid() and periodoForm.is_valid():
+            servicioForm.save()
+            if periodoForm.cleaned_data['periodos'] is not None:
+                periodo = periodoForm.save(commit=False)
+                periodo.servicio = servicio
+                periodo.save()
+            return redirect('consultarServicios')
+    else:
+        servicioForm = ServicioForm(instance=servicio)
+        periodoForm = PeriodoForm(instance=periodo)
+    return render(request, 'modificarEliminarServicio.html', {'servicioForm': servicioForm, 'periodoForm': periodoForm})
+
+
+def consultarServicios(request):
+    filter_by = request.GET.get('filter', 'nombre')
+    query = request.GET.get('search', '')
+
+    # Obtener todos los servicios y sus períodos asociados
+    servicios = Servicio.objects.all()
+    if query:
+        if filter_by == 'nombre':
+            servicios = servicios.filter(nombre__icontains=query)
+        elif filter_by == 'categoria':
+            servicios = servicios.filter(categoria__icontains=query)
+
+    # Obtener todos los tipos de período disponibles
+    tipos_de_periodo = Periodo.objects.values_list('tipo', flat=True).distinct()
+
+    return render(request, 'consultarServicios.html', {'servicios': servicios, 'search': query, 'filter': filter_by, 'tipos_de_periodo': tipos_de_periodo})
+
 def registrarVenta(request):
     clientesObtenidos = Cliente.objects.all()
     fecha_actual = datetime.datetime.now 
@@ -60,17 +116,7 @@ def modificarVenta(request):
 def generarReporteDeVentas(request):
     return render(request, 'generarReporteDeVentas.html')  
 
-@login_required
-def consultarServicios(request):
-    return render(request, 'consultarServicios.html')
 
-@login_required
-def registrarServicio(request):
-    return render(request, 'registrarServicio.html')
-
-@login_required  
-def modificarEliminarServicio(request):
-    return render(request, 'modificarEliminarServicio.html')
 
 @login_required
 def consultarClientes(request):
