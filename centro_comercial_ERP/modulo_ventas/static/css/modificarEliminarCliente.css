@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 50%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Estilo para los labels */
+label {
+    font-size: 18px; /* Cambia esto según sea necesario */
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"], input[type="email"], textarea, select {
+    font-size: 18px; /* Cambia esto según sea necesario */
+    padding: 10px;
+    flex: 2;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    padding: 10px 20px;
+    background-color: #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.cancel-btn:hover {
+    background-color: #bbb;
+}
+
+.register-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.register-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #e31b0c;
+}
